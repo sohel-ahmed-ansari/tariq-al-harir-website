@@ -1,156 +1,130 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
-import { useScrollReveal } from "../hooks/useScrollReveal";
+interface Video {
+  id: string;
+  title: string;
+  description: string;
+  thumbnail: string;
+  date: string;
+  product: string;
+}
 
-// Placeholder video data - in production, this would come from an API or CMS
-const videos = [
+// Placeholder videos - replace with actual YouTube videos later
+const videos: Video[] = [
   {
-    id: "1",
-    title: "Fresh Apples Container Opening - January 2026",
+    id: "placeholder-1",
+    title: "Fresh Fruits Container Opening",
     description:
-      "Quality inspection of fresh apple shipment from Europe. Premium grade fruits ready for distribution.",
-    thumbnail: null,
-    youtubeId: null, // Add YouTube video ID when available
-    date: "2026-01-20",
-    category: "Fruits",
-    tags: ["apples", "fresh produce", "import"],
+      "Watch us unload a fresh shipment of premium fruits from our trusted suppliers. Quality inspection and storage process.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+    date: "Coming Soon",
+    product: "Fresh Fruits",
   },
   {
-    id: "2",
-    title: "Frozen Chicken Container - Quality Check",
+    id: "placeholder-2",
+    title: "Vegetable Shipment Arrival",
     description:
-      "Inspection of frozen chicken products. All items meet HACCP standards and temperature requirements.",
-    thumbnail: null,
-    youtubeId: null,
-    date: "2026-01-18",
-    category: "Frozen Meat",
-    tags: ["chicken", "frozen", "poultry"],
+      "Container opening of fresh vegetables imported for distribution across UAE markets.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&auto=format&fit=crop&w=1084&q=80",
+    date: "Coming Soon",
+    product: "Vegetables",
   },
   {
-    id: "3",
-    title: "Rice Shipment Unloading - Basmati Premium",
+    id: "placeholder-3",
+    title: "Frozen Meat Unloading",
     description:
-      "High-quality Basmati rice from India. Perfect for restaurants and retail distribution.",
-    thumbnail: null,
-    youtubeId: null,
-    date: "2026-01-15",
-    category: "Rice & Grains",
-    tags: ["rice", "basmati", "grains"],
+      "See our cold chain process in action as we unload frozen meat products maintaining optimal temperatures.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1603048297172-c92544798d5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+    date: "Coming Soon",
+    product: "Frozen Meat",
   },
   {
-    id: "4",
-    title: "Fresh Vegetables Container Arrival",
+    id: "placeholder-4",
+    title: "Rice & Grains Shipment",
     description:
-      "Mixed vegetables shipment including tomatoes, onions, and potatoes. Farm-fresh quality.",
-    thumbnail: null,
-    youtubeId: null,
-    date: "2026-01-12",
-    category: "Vegetables",
-    tags: ["vegetables", "fresh", "organic"],
+      "Bulk rice and grains container opening at Dubai port. Premium quality Basmati and specialty rice varieties.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+    date: "Coming Soon",
+    product: "Rice & Grains",
   },
   {
-    id: "5",
-    title: "Sugar Container - Quality Verification",
+    id: "placeholder-5",
+    title: "Eggs Container Inspection",
     description:
-      "White refined sugar from Brazil. Premium quality for commercial and retail use.",
-    thumbnail: null,
-    youtubeId: null,
-    date: "2026-01-10",
-    category: "Sugar",
-    tags: ["sugar", "refined", "wholesale"],
+      "Quality inspection during container opening of fresh eggs. See our careful handling process.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+    date: "Coming Soon",
+    product: "Eggs",
   },
   {
-    id: "6",
-    title: "Eggs Shipment - Temperature Controlled",
+    id: "placeholder-6",
+    title: "Sugar Shipment Arrival",
     description:
-      "Fresh eggs arriving in temperature-controlled container. Strict quality control measures.",
-    thumbnail: null,
-    youtubeId: null,
-    date: "2026-01-08",
-    category: "Eggs",
-    tags: ["eggs", "fresh", "farm"],
+      "Bulk sugar shipment unloading at our warehouse. Premium refined sugar for wholesale distribution.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+    date: "Coming Soon",
+    product: "Sugar",
   },
 ];
 
-const categories = [
-  "All",
-  "Fruits",
-  "Vegetables",
-  "Frozen Meat",
-  "Rice & Grains",
-  "Sugar",
-  "Eggs",
-];
+const Videos = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-export function Videos() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const titleRef = useScrollReveal<HTMLDivElement>();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-  const filteredVideos =
-    selectedCategory === "All"
-      ? videos
-      : videos.filter((video) => video.category === selectedCategory);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <main className="min-h-screen bg-white pt-24">
+    <main>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#faf9f6] to-white py-16 lg:py-24">
-        {/* Background */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 h-full w-1/2 bg-gradient-to-r from-[#b8860b]/5 to-transparent" />
+      <section className="relative overflow-hidden bg-[#1a5f2a] py-32 md:py-40">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }}
+          />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div ref={titleRef} className="reveal text-center">
-            <span className="mb-4 inline-block font-sans text-sm font-semibold tracking-widest text-[#b8860b] uppercase">
-              Container Opening Videos
-            </span>
-            <h1 className="font-serif text-4xl font-bold text-gray-900 sm:text-5xl lg:text-6xl">
-              Watch Our <span className="gold-gradient-text">Imports</span>{" "}
-              Arrive
-            </h1>
-            <div className="section-divider mt-6" />
-            <p className="mx-auto mt-6 max-w-2xl font-sans text-lg text-gray-600">
-              Transparency is our commitment. Watch our container opening videos
-              to see the quality of products we import to Dubai. Every shipment
-              is documented for your assurance.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Videos Section */}
-      <section className="relative py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Category Filter */}
-          <div className="mb-12 flex flex-wrap justify-center gap-3">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`rounded-full px-6 py-2 font-sans text-sm font-medium transition-all ${
-                  selectedCategory === category
-                    ? "bg-[#1a1a2e] text-white"
-                    : "border border-gray-200 bg-white text-gray-600 hover:border-[#b8860b] hover:text-[#b8860b]"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
-          {/* Videos Grid */}
-          {filteredVideos.length > 0 ? (
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredVideos.map((video, index) => (
-                <VideoCard key={video.id} video={video} index={index} />
-              ))}
-            </div>
-          ) : (
-            <div className="py-16 text-center">
-              <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-[#b8860b]/10">
+        <div className="container-custom relative z-10 text-center">
+          {/* Breadcrumb */}
+          <nav className="mb-6 flex justify-center">
+            <ol className="flex items-center gap-2 text-sm text-white/70">
+              <li>
+                <Link to="/" className="transition-colors hover:text-white">
+                  Home
+                </Link>
+              </li>
+              <li>
                 <svg
-                  className="h-10 w-10 text-[#b8860b]"
+                  className="h-4 w-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -158,25 +132,119 @@ export function Videos() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={1.5}
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </li>
+              <li className="text-white">Videos</li>
+            </ol>
+          </nav>
+
+          {/* Title */}
+          <h1 className="font-display mb-6 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+            Container Opening Videos
+          </h1>
+
+          {/* Subtitle */}
+          <p className="mx-auto max-w-2xl text-lg text-white/80">
+            Watch our behind-the-scenes videos of container openings in Dubai.
+            See the quality of products we import and our careful handling
+            process.
+          </p>
+        </div>
+      </section>
+
+      {/* Videos Grid */}
+      <section ref={sectionRef} className="section-padding bg-gray-50">
+        <div className="container-custom">
+          {/* Info Banner */}
+          <div className="mb-12 rounded-2xl bg-gradient-to-r from-[#1a5f2a]/10 to-[#1a5f2a]/5 p-6 md:p-8">
+            <div className="flex flex-col items-center gap-4 text-center md:flex-row md:text-left">
+              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-[#1a5f2a]/10">
+                <svg
+                  className="h-7 w-7 text-[#1a5f2a]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
                     d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
                   />
                 </svg>
               </div>
-              <p className="font-sans text-lg text-gray-600">
-                No videos in this category yet.
-              </p>
-              <p className="mt-2 font-sans text-gray-400">
-                Check back soon for new container opening videos!
-              </p>
+              <div>
+                <h2 className="mb-1 text-xl font-bold text-gray-900">
+                  Transparency in Trade
+                </h2>
+                <p className="text-gray-600">
+                  We believe in complete transparency. These videos showcase our
+                  container openings, demonstrating the quality of products we
+                  import and our commitment to proper handling and storage.
+                </p>
+              </div>
             </div>
-          )}
+          </div>
+
+          {/* Videos Grid */}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {videos.map((video, index) => (
+              <div
+                key={video.id}
+                className={`video-card transition-all duration-700 ${
+                  isVisible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-10 opacity-0"
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                {/* Thumbnail */}
+                <div className="group relative aspect-video overflow-hidden">
+                  <img
+                    src={video.thumbnail}
+                    alt={video.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  {/* Play Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90">
+                      <svg
+                        className="h-8 w-8 text-[#1a5f2a]"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                  {/* Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="rounded-full bg-[#1a5f2a] px-3 py-1 text-xs font-medium text-white">
+                      {video.product}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <p className="mb-2 text-sm text-gray-500">{video.date}</p>
+                  <h3 className="font-display mb-2 text-lg font-bold text-gray-900">
+                    {video.title}
+                  </h3>
+                  <p className="text-sm text-gray-600">{video.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
 
           {/* Coming Soon Notice */}
-          <div className="mt-16 rounded-2xl border border-gray-100 bg-[#faf9f6] p-8 text-center">
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#b8860b]/10">
+          <div className="mt-16 text-center">
+            <div className="inline-flex items-center gap-3 rounded-full bg-yellow-50 px-6 py-3 text-yellow-800">
               <svg
-                className="h-8 w-8 text-[#b8860b]"
+                className="h-5 w-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -184,123 +252,59 @@ export function Videos() {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  strokeWidth={2}
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
+              <span className="font-medium">
+                More videos coming soon! Follow us for updates.
+              </span>
             </div>
-            <h3 className="mb-2 font-serif text-xl font-semibold text-gray-900">
-              More Videos Coming Soon
-            </h3>
-            <p className="mx-auto max-w-xl font-sans text-gray-600">
-              We regularly update this page with new container opening videos.
-              Subscribe to our updates or follow us to stay informed about our
-              latest imports.
-            </p>
-            <a
-              href="https://wa.me/971544646134"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary mt-6 inline-flex items-center gap-2"
-            >
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-              </svg>
-              Get Updates on WhatsApp
-            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-white py-16">
+        <div className="container-custom">
+          <div className="rounded-2xl bg-gradient-to-r from-[#1a5f2a] to-[#0d3d16] p-8 md:p-12">
+            <div className="flex flex-col items-center gap-8 text-center md:flex-row md:text-left">
+              <div className="flex-1">
+                <h2 className="font-display mb-4 text-2xl font-bold text-white md:text-3xl">
+                  Interested in Our Products?
+                </h2>
+                <p className="text-white/80">
+                  Contact us today for competitive quotes on bulk orders. We
+                  deliver quality foodstuff products across the UAE and
+                  worldwide.
+                </p>
+              </div>
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <a
+                  href="https://wa.me/971544646134"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                >
+                  <svg
+                    className="mr-2 h-5 w-5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                  </svg>
+                  WhatsApp
+                </a>
+                <Link to="/#contact" className="btn-secondary">
+                  Contact Us
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
     </main>
   );
-}
+};
 
-interface VideoCardProps {
-  video: (typeof videos)[0];
-  index: number;
-}
-
-function VideoCard({ video, index }: VideoCardProps) {
-  const cardRef = useScrollReveal<HTMLDivElement>();
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
-
-  return (
-    <div
-      ref={cardRef}
-      className="reveal card-hover group overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm"
-      style={{ transitionDelay: `${index * 100}ms` }}
-    >
-      {/* Video Thumbnail */}
-      <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-[#faf9f6] to-gray-100">
-        {video.youtubeId ? (
-          <iframe
-            src={`https://www.youtube.com/embed/${video.youtubeId}`}
-            title={video.title}
-            className="absolute inset-0 h-full w-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-[#1a1a2e]/10 transition-all group-hover:scale-110 group-hover:bg-[#1a1a2e]/20">
-              <svg
-                className="h-8 w-8 text-[#1a1a2e]"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-            <span className="font-sans text-sm text-gray-400">
-              Video Coming Soon
-            </span>
-          </div>
-        )}
-
-        {/* Category Badge */}
-        <div className="absolute top-4 left-4">
-          <span className="rounded-full bg-[#1a1a2e] px-3 py-1 font-sans text-xs font-medium text-white">
-            {video.category}
-          </span>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-6">
-        {/* Date */}
-        <p className="mb-2 font-sans text-xs text-[#b8860b]">
-          {formatDate(video.date)}
-        </p>
-
-        {/* Title */}
-        <h3 className="mb-2 font-serif text-lg font-semibold text-gray-900 transition-colors group-hover:text-[#b8860b]">
-          {video.title}
-        </h3>
-
-        {/* Description */}
-        <p className="mb-4 line-clamp-2 font-sans text-sm text-gray-500">
-          {video.description}
-        </p>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2">
-          {video.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full bg-gray-100 px-3 py-1 font-sans text-xs text-gray-500"
-            >
-              #{tag}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
+export default Videos;

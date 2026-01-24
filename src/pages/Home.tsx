@@ -1,15 +1,16 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-import { About } from "../components/home/About";
-import { Contact } from "../components/home/Contact";
-import { Hero } from "../components/home/Hero";
-import { Products } from "../components/home/Products";
-import { Stats } from "../components/home/Stats";
-import { Testimonials } from "../components/home/Testimonials";
-import { WhyChooseUs } from "../components/home/WhyChooseUs";
+import {
+  Hero,
+  About,
+  Products,
+  Stats,
+  WhyChooseUs,
+  Contact,
+} from "../components/home";
 
-export function Home() {
+const Home = () => {
   const location = useLocation();
 
   useEffect(() => {
@@ -21,7 +22,6 @@ export function Home() {
         element?.scrollIntoView({ behavior: "smooth" });
       }, 100);
     } else {
-      // Scroll to top when navigating to home without hash
       window.scrollTo(0, 0);
     }
   }, [location]);
@@ -33,8 +33,9 @@ export function Home() {
       <Products />
       <Stats />
       <WhyChooseUs />
-      <Testimonials />
       <Contact />
     </main>
   );
-}
+};
+
+export default Home;

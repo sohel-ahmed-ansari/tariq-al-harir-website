@@ -1,47 +1,48 @@
 import { Link } from "react-router-dom";
 
-const quickLinks = [
-  { name: "Home", path: "/" },
-  { name: "About Us", path: "/#about" },
-  { name: "Our Products", path: "/#products" },
-  { name: "Why Choose Us", path: "/#why-us" },
-  { name: "Videos", path: "/videos" },
-  { name: "Contact", path: "/#contact" },
-];
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
 
-const products = [
-  "Fresh Fruits & Vegetables",
-  "Frozen Meat & Poultry",
-  "Eggs & Dairy",
-  "Sugar & Rice",
-  "Flour & Grains",
-  "Bakery Products",
-];
+  const quickLinks = [
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/#about" },
+    { name: "Products", path: "/#products" },
+    { name: "Videos", path: "/videos" },
+    { name: "Contact", path: "/#contact" },
+  ];
 
-export function Footer() {
+  const products = [
+    "Fresh Fruits & Vegetables",
+    "Frozen Meat",
+    "Eggs",
+    "Sugar & Rice",
+    "Flour",
+    "Bakery Products",
+  ];
+
   return (
-    <footer className="bg-[#1a1a2e] text-white">
+    <footer className="bg-gray-900 text-white">
       {/* Main Footer */}
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="container-custom py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div className="lg:col-span-1">
             <img
               src="/logo.png"
               alt="Tariq Al Harir Logo"
-              className="mb-6 h-20 w-auto brightness-0 invert"
+              className="mb-6 h-16 w-auto brightness-0 invert"
             />
-            <p className="mb-6 font-sans text-sm leading-relaxed text-white/70">
-              Tariq Al Harir - &quot;The Silk Road&quot; - connecting global
-              markets with premium foodstuff trading services. Your trusted
-              partner for import and export in Dubai, UAE.
+            <p className="mb-6 leading-relaxed text-gray-400">
+              Tariq Al Harir - meaning &quot;Silk Road&quot; - continues the
+              ancient tradition of connecting the world through quality trade.
+              Your trusted partner for premium foodstuff in Dubai, UAE.
             </p>
             <div className="flex gap-4">
               <a
                 href="https://wa.me/971544646134"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-110 hover:bg-[#25D366]"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-[#25D366]"
                 aria-label="WhatsApp"
               >
                 <svg
@@ -54,7 +55,7 @@ export function Footer() {
               </a>
               <a
                 href="mailto:sameermehfooz@gmail.com"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-110 hover:bg-[#d4af37]"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-[#1a5f2a]"
                 aria-label="Email"
               >
                 <svg
@@ -76,7 +77,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="mb-6 font-serif text-lg font-semibold text-[#d4af37]">
+            <h3 className="font-display mb-6 text-lg font-semibold">
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -84,7 +85,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="font-sans text-sm text-white/70 transition-colors hover:text-[#d4af37]"
+                    className="text-gray-400 transition-colors hover:text-white"
                   >
                     {link.name}
                   </Link>
@@ -95,15 +96,13 @@ export function Footer() {
 
           {/* Products */}
           <div>
-            <h3 className="mb-6 font-serif text-lg font-semibold text-[#d4af37]">
+            <h3 className="font-display mb-6 text-lg font-semibold">
               Our Products
             </h3>
             <ul className="space-y-3">
               {products.map((product) => (
                 <li key={product}>
-                  <span className="font-sans text-sm text-white/70">
-                    {product}
-                  </span>
+                  <span className="text-gray-400">{product}</span>
                 </li>
               ))}
             </ul>
@@ -111,13 +110,13 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="mb-6 font-serif text-lg font-semibold text-[#d4af37]">
+            <h3 className="font-display mb-6 text-lg font-semibold">
               Contact Us
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <svg
-                  className="mt-1 h-5 w-5 flex-shrink-0 text-[#d4af37]"
+                  className="mt-1 h-5 w-5 flex-shrink-0 text-[#1a5f2a]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -135,15 +134,17 @@ export function Footer() {
                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                   />
                 </svg>
-                <span className="font-sans text-sm text-white/70">
-                  Office 236SH-R16, Dubai Industrial City,
+                <span className="text-gray-400">
+                  Office 16, Building 236SH-R
                   <br />
-                  Dubai, United Arab Emirates
+                  Dubai Industrial City
+                  <br />
+                  Dubai, UAE
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <svg
-                  className="h-5 w-5 flex-shrink-0 text-[#d4af37]"
+                  className="h-5 w-5 flex-shrink-0 text-[#1a5f2a]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -157,14 +158,14 @@ export function Footer() {
                 </svg>
                 <a
                   href="tel:+971544646134"
-                  className="font-sans text-sm text-white/70 transition-colors hover:text-[#d4af37]"
+                  className="text-gray-400 transition-colors hover:text-white"
                 >
                   +971 54 464 6134
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <svg
-                  className="h-5 w-5 flex-shrink-0 text-[#d4af37]"
+                  className="h-5 w-5 flex-shrink-0 text-[#1a5f2a]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -178,7 +179,7 @@ export function Footer() {
                 </svg>
                 <a
                   href="mailto:sameermehfooz@gmail.com"
-                  className="font-sans text-sm text-white/70 transition-colors hover:text-[#d4af37]"
+                  className="text-gray-400 transition-colors hover:text-white"
                 >
                   sameermehfooz@gmail.com
                 </a>
@@ -189,19 +190,19 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="font-sans text-sm text-white/50">
-              © {new Date().getFullYear()} Tariq Al Harir Foodstuff Trading
-              L.L.C. All rights reserved.
-            </p>
-            <p className="font-sans text-sm text-white/50">
-              License No: 1591141 | DCCI No: 666965
-            </p>
-          </div>
+      <div className="border-t border-gray-800">
+        <div className="container-custom flex flex-col items-center justify-between gap-4 py-6 md:flex-row">
+          <p className="text-sm text-gray-500">
+            &copy; {currentYear} Tariq Al Harir Foodstuff Trading L.L.C. All
+            rights reserved.
+          </p>
+          <p className="text-sm text-gray-500">
+            License No. 1591141 | Dubai, UAE
+          </p>
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

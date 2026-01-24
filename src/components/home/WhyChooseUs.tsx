@@ -1,13 +1,19 @@
-import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useEffect, useRef, useState } from "react";
 
-const features = [
+interface Feature {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+}
+
+const features: Feature[] = [
   {
-    title: "Premium Quality",
+    title: "Strategic Location",
     description:
-      "Every product undergoes rigorous quality checks to ensure it meets international food safety standards and your expectations.",
+      "Based in Dubai, UAE - a global trade hub connecting Asia, Europe, and Africa with world-class port facilities.",
     icon: (
       <svg
-        className="h-6 w-6"
+        className="h-7 w-7"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -15,19 +21,19 @@ const features = [
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth={1.5}
-          d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+          strokeWidth={2}
+          d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
         />
       </svg>
     ),
   },
   {
-    title: "Global Network",
+    title: "Quality Assurance",
     description:
-      "Our extensive network of suppliers and buyers across continents ensures competitive pricing and reliable supply chains.",
+      "Rigorous quality control processes ensure only the finest products reach our customers. We maintain strict standards.",
     icon: (
       <svg
-        className="h-6 w-6"
+        className="h-7 w-7"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -35,8 +41,8 @@ const features = [
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth={1.5}
-          d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          strokeWidth={2}
+          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
         />
       </svg>
     ),
@@ -44,10 +50,10 @@ const features = [
   {
     title: "Competitive Pricing",
     description:
-      "Direct sourcing and efficient logistics allow us to offer the best prices without compromising on quality.",
+      "Direct relationships with producers and efficient logistics enable us to offer the best prices in the market.",
     icon: (
       <svg
-        className="h-6 w-6"
+        className="h-7 w-7"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -55,8 +61,28 @@ const features = [
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth={1.5}
+          strokeWidth={2}
           d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Licensed & Compliant",
+    description:
+      "Fully licensed by Dubai DED with all necessary certifications for legal and compliant trading operations.",
+    icon: (
+      <svg
+        className="h-7 w-7"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
         />
       </svg>
     ),
@@ -64,10 +90,10 @@ const features = [
   {
     title: "Reliable Logistics",
     description:
-      "Strategic location in Dubai ensures efficient shipping routes and timely delivery to your destination.",
+      "Efficient supply chain management with proper cold storage and timely delivery to maintain product freshness.",
     icon: (
       <svg
-        className="h-6 w-6"
+        className="h-7 w-7"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -75,28 +101,8 @@ const features = [
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth={1.5}
+          strokeWidth={2}
           d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Licensed & Certified",
-    description:
-      "Fully licensed by Dubai DED and member of DCCI, ensuring all transactions are legal and transparent.",
-    icon: (
-      <svg
-        className="h-6 w-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.5}
-          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
         />
       </svg>
     ),
@@ -104,10 +110,10 @@ const features = [
   {
     title: "Customer Focus",
     description:
-      "Dedicated support team ready to assist with your specific requirements and ensure complete satisfaction.",
+      "Dedicated support team available 24/7 to address your queries and ensure smooth transactions every time.",
     icon: (
       <svg
-        className="h-6 w-6"
+        className="h-7 w-7"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -115,7 +121,7 @@ const features = [
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth={1.5}
+          strokeWidth={2}
           d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
         />
       </svg>
@@ -123,89 +129,78 @@ const features = [
   },
 ];
 
-export function WhyChooseUs() {
-  const titleRef = useScrollReveal<HTMLDivElement>();
+const WhyChooseUs = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section
-      id="why-us"
-      className="relative overflow-hidden bg-white py-24 lg:py-32"
-    >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23b8860b' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-          }}
-        />
-      </div>
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="why-us" ref={sectionRef} className="section-padding bg-white">
+      <div className="container-custom">
         {/* Section Header */}
-        <div ref={titleRef} className="reveal mb-16 text-center">
-          <span className="mb-4 inline-block font-sans text-sm font-semibold tracking-widest text-[#b8860b] uppercase">
-            Our Advantages
-          </span>
-          <h2 className="font-serif text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
-            Why Choose{" "}
-            <span className="gold-gradient-text">Tariq Al Harir</span>
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <div className="mb-4 inline-flex items-center gap-2">
+            <span className="h-px w-8 bg-[#1a5f2a]" />
+            <span className="font-medium tracking-wider text-[#1a5f2a] uppercase">
+              Why Choose Us
+            </span>
+            <span className="h-px w-8 bg-[#1a5f2a]" />
+          </div>
+          <h2 className="font-display mb-6 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl">
+            Your Trusted Trading Partner
           </h2>
-          <div className="section-divider mt-6" />
-          <p className="mx-auto mt-6 max-w-2xl font-sans text-lg text-gray-600">
-            We combine traditional trading values with modern business practices
-            to deliver exceptional service and quality.
+          <p className="text-lg text-gray-600">
+            Experience the difference of working with a professional, licensed
+            foodstuff trading company dedicated to your success.
           </p>
         </div>
 
         {/* Features Grid */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
-            <FeatureCard key={feature.title} feature={feature} index={index} />
+            <div
+              key={feature.title}
+              className={`group rounded-2xl border border-gray-100 bg-white p-8 transition-all duration-700 hover:border-[#1a5f2a]/20 hover:shadow-xl ${
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-10 opacity-0"
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
+            >
+              {/* Icon */}
+              <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-[#1a5f2a]/10 text-[#1a5f2a] transition-colors group-hover:bg-[#1a5f2a] group-hover:text-white">
+                {feature.icon}
+              </div>
+
+              {/* Content */}
+              <h3 className="font-display mb-3 text-xl font-bold text-gray-900">
+                {feature.title}
+              </h3>
+              <p className="leading-relaxed text-gray-600">
+                {feature.description}
+              </p>
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
-}
+};
 
-interface FeatureCardProps {
-  feature: (typeof features)[0];
-  index: number;
-}
-
-function FeatureCard({ feature, index }: FeatureCardProps) {
-  const cardRef = useScrollReveal<HTMLDivElement>();
-
-  return (
-    <div
-      ref={cardRef}
-      className="reveal group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all duration-500 hover:border-[#b8860b]/30 hover:shadow-lg"
-      style={{ transitionDelay: `${index * 100}ms` }}
-    >
-      {/* Hover Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#b8860b]/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-      {/* Content */}
-      <div className="relative">
-        {/* Icon */}
-        <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-[#b8860b]/10 text-[#b8860b] transition-all duration-500 group-hover:scale-110 group-hover:bg-[#1a1a2e] group-hover:text-white">
-          {feature.icon}
-        </div>
-
-        {/* Title */}
-        <h3 className="mb-3 font-serif text-xl font-semibold text-gray-900">
-          {feature.title}
-        </h3>
-
-        {/* Description */}
-        <p className="font-sans text-sm leading-relaxed text-gray-500">
-          {feature.description}
-        </p>
-      </div>
-
-      {/* Corner Accent */}
-      <div className="absolute -right-2 -bottom-2 h-16 w-16 rounded-tl-2xl border-t-2 border-l-2 border-gray-100 transition-all duration-500 group-hover:border-[#b8860b]/30" />
-    </div>
-  );
-}
+export default WhyChooseUs;
