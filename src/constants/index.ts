@@ -13,10 +13,10 @@ export const COMPANY = {
 export const CONTACT = {
   phone: "+971544646134",
   phoneDisplay: "+971 54 464 6134",
-  email: "sameermehfooz@gmail.com",
+  email: "tariqalharirtrading@gmail.com",
   whatsapp: "https://wa.me/971544646134",
   phoneLink: "tel:+971544646134",
-  emailLink: "mailto:sameermehfooz@gmail.com",
+  emailLink: "mailto:tariqalharirtrading@gmail.com",
 } as const;
 
 // Brand Colors
