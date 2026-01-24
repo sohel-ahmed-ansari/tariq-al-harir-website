@@ -84,11 +84,11 @@ body {
 
 /* Button Styles */
 .btn-primary {
-  @apply inline-flex items-center justify-center rounded-lg bg-[#1a5f2a] px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-[#0d3d16] hover:shadow-lg;
+  @apply inline-flex items-center justify-center rounded-lg bg-[#1a5f2a] px-6 py-2 font-semibold text-white transition-all duration-300 hover:bg-[#0d3d16] hover:shadow-lg;
 }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center rounded-lg border-2 border-white bg-transparent px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-white hover:text-[#1a5f2a];
+  @apply inline-flex items-center justify-center rounded-lg border-2 border-white bg-transparent px-6 py-2 font-semibold text-white transition-all duration-300 hover:bg-white hover:text-[#1a5f2a];
 }
 
 .btn-outline {
@@ -125,7 +125,11 @@ body {
 
 /* Navigation */
 .nav-link {
-  @apply relative text-gray-700 transition-colors duration-300 hover:text-[#1a5f2a];
+  @apply relative transition-colors duration-300;
+}
+
+.nav-link:hover {
+  @apply text-[#6fcf7c];
 }
 
 .nav-link::after {
@@ -138,7 +142,7 @@ body {
 }
 
 .nav-link.active {
-  @apply font-semibold text-[#1a5f2a];
+  @apply font-semibold;
 }
 
 .nav-link.active::after {
@@ -241,7 +245,7 @@ body {
 
 @media (min-width: 1025px) {
   .hero-title {
-    font-size: 4rem;
+    font-size: 3rem;
     line-height: 1.1;
   }
 }
