@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import heroImage from "../../assets/hero.png";
+import heroImage from "../../assets/hero.jpeg";
 import { COMPANY } from "../../constants";
 import { Button, Container } from "../ui";
 

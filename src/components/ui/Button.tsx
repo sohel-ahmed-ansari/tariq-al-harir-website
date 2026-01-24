@@ -1,4 +1,8 @@
-import { ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
+import type {
+  ReactNode,
+  ButtonHTMLAttributes,
+  AnchorHTMLAttributes,
+} from "react";
 import { Link } from "react-router-dom";
 
 type ButtonVariant = "primary" | "secondary" | "outline";
