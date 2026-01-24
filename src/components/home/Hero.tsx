@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
 import heroImage from "../../assets/hero.png";
+import { COMPANY } from "../../constants";
+import { Button, Container } from "../ui";
 
 const Hero = () => {
   const [offsetY, setOffsetY] = useState(0);
@@ -42,20 +44,20 @@ const Hero = () => {
 
       {/* Content with parallax and fade */}
       <div
-        className="container-custom relative z-10 flex min-h-screen items-center will-change-transform"
+        className="relative z-10 flex min-h-screen items-center will-change-transform"
         style={{
           transform: `translateY(${contentY}px)`,
           opacity: contentOpacity,
         }}
       >
-        <div className="w-full pt-20">
+        <Container className="w-full pt-20">
           {/* Text content */}
           <div className="max-w-2xl">
             {/* Badge */}
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm">
               <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
               <span className="text-sm font-medium text-white/90">
-                Licensed Trading Company in Dubai, UAE
+                Licensed Trading Company in {COMPANY.location}
               </span>
             </div>
 
@@ -68,16 +70,18 @@ const Hero = () => {
 
             {/* Subtitle */}
             <p className="mb-8 max-w-xl text-lg leading-relaxed text-white/80">
-              <span className="font-semibold text-white">Tariq Al Harir</span> -
-              meaning &quot;Silk Road&quot; - continues the ancient tradition of
-              connecting the world through quality trade. We specialize in
-              importing and exporting fresh fruits, vegetables, frozen meat, and
-              essential food products.
+              <span className="font-semibold text-white">
+                {COMPANY.shortName}
+              </span>{" "}
+              - meaning &quot;{COMPANY.tagline}&quot; - continues the ancient
+              tradition of connecting the world through quality trade. We
+              specialize in importing and exporting fresh fruits, vegetables,
+              frozen meat, and essential food products.
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col gap-4 sm:flex-row">
-              <a href="#contact" className="btn-primary">
+              <Button as="a" href="#contact" variant="primary">
                 <svg
                   className="mr-2 h-5 w-5"
                   fill="none"
@@ -92,8 +96,8 @@ const Hero = () => {
                   />
                 </svg>
                 Get Quote
-              </a>
-              <a href="#products" className="btn-secondary">
+              </Button>
+              <Button as="a" href="#products" variant="secondary">
                 <svg
                   className="mr-2 h-5 w-5"
                   fill="none"
@@ -108,7 +112,7 @@ const Hero = () => {
                   />
                 </svg>
                 View Products
-              </a>
+              </Button>
             </div>
 
             {/* Trust Badges */}
@@ -178,20 +182,20 @@ const Hero = () => {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
 
       {/* Right side - Logo (outside fading container) */}
       <div className="pointer-events-none absolute inset-0 z-20 hidden lg:block">
-        <div className="container-custom flex h-full items-center justify-end">
+        <Container className="flex h-full items-center justify-end">
           <div className="relative rounded-3xl bg-black/20 p-8 backdrop-blur-md">
             <img
               src="/logo.png"
-              alt="Tariq Al Harir Foodstuff Trading L.L.C"
+              alt={COMPANY.name}
               className="relative h-44 w-auto brightness-0 drop-shadow-[0_4px_8px_rgba(0,0,0,0.4)] invert xl:h-52"
             />
           </div>
-        </div>
+        </Container>
       </div>
 
       {/* Scroll Indicator */}

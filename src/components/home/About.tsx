@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
+import { COMPANY } from "../../constants";
+import { Button, Container } from "../ui";
+
 const About = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -25,9 +28,9 @@ const About = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="section-padding relative overflow-hidden bg-white"
+      className="relative overflow-hidden bg-white py-16 md:py-24"
     >
-      <div className="container-custom">
+      <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Image Side */}
           <div
@@ -95,11 +98,12 @@ const About = () => {
             {/* Description */}
             <p className="mb-6 text-lg leading-relaxed text-gray-600">
               <span className="font-semibold text-[#1a5f2a]">
-                Tariq Al Harir
+                {COMPANY.shortName}
               </span>{" "}
-              - &quot;The Silk Road&quot; - evokes the legendary trade routes
-              that connected civilizations. Based in Dubai, we continue this
-              proud tradition by facilitating the import and export of premium
+              - &quot;The {COMPANY.tagline}&quot; - evokes the legendary trade
+              routes that connected civilizations. Based in{" "}
+              {COMPANY.location.split(", ")[0]}, we continue this proud
+              tradition by facilitating the import and export of premium
               foodstuff products.
             </p>
 
@@ -216,7 +220,7 @@ const About = () => {
             </div>
 
             {/* CTA */}
-            <a href="#contact" className="btn-primary">
+            <Button as="a" href="#contact" variant="primary">
               Partner With Us
               <svg
                 className="ml-2 h-5 w-5"
@@ -231,10 +235,10 @@ const About = () => {
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
-            </a>
+            </Button>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

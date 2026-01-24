@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
+import { Container } from "../ui";
+
 interface Stat {
   value: string;
   label: string;
@@ -122,7 +124,7 @@ const Stats = () => {
       <div className="absolute inset-0 bg-[#1a5f2a]/90" />
 
       {/* Content */}
-      <div className="container-custom relative z-10">
+      <Container className="relative z-10">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {stats.map((stat, index) => (
             <div
@@ -144,7 +146,7 @@ const Stats = () => {
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

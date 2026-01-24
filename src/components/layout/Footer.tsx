@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 
+import { COMPANY, CONTACT } from "../../constants";
+import { Container } from "../ui";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -23,23 +26,24 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
       {/* Main Footer */}
-      <div className="container-custom py-16">
+      <Container className="py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div className="lg:col-span-1">
             <img
               src="/logo.png"
-              alt="Tariq Al Harir Logo"
+              alt={`${COMPANY.shortName} Logo`}
               className="mb-6 h-16 w-auto brightness-0 invert"
             />
             <p className="mb-6 leading-relaxed text-gray-400">
-              Tariq Al Harir - meaning &quot;Silk Road&quot; - continues the
-              ancient tradition of connecting the world through quality trade.
-              Your trusted partner for premium foodstuff in Dubai, UAE.
+              {COMPANY.shortName} - meaning &quot;{COMPANY.tagline}&quot; -
+              continues the ancient tradition of connecting the world through
+              quality trade. Your trusted partner for premium foodstuff in{" "}
+              {COMPANY.location}.
             </p>
             <div className="flex gap-4">
               <a
-                href="https://wa.me/971544646134"
+                href={CONTACT.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-[#25D366]"
@@ -54,7 +58,7 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="mailto:sameermehfooz@gmail.com"
+                href={CONTACT.emailLink}
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-[#1a5f2a]"
                 aria-label="Email"
               >
@@ -157,10 +161,10 @@ const Footer = () => {
                   />
                 </svg>
                 <a
-                  href="tel:+971544646134"
+                  href={CONTACT.phoneLink}
                   className="text-gray-400 transition-colors hover:text-white"
                 >
-                  +971 54 464 6134
+                  {CONTACT.phoneDisplay}
                 </a>
               </li>
               <li className="flex items-center gap-3">
@@ -178,28 +182,27 @@ const Footer = () => {
                   />
                 </svg>
                 <a
-                  href="mailto:sameermehfooz@gmail.com"
+                  href={CONTACT.emailLink}
                   className="text-gray-400 transition-colors hover:text-white"
                 >
-                  sameermehfooz@gmail.com
+                  {CONTACT.email}
                 </a>
               </li>
             </ul>
           </div>
         </div>
-      </div>
+      </Container>
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-800">
-        <div className="container-custom flex flex-col items-center justify-between gap-4 py-6 md:flex-row">
+        <Container className="flex flex-col items-center justify-between gap-4 py-6 md:flex-row">
           <p className="text-sm text-gray-500">
-            &copy; {currentYear} Tariq Al Harir Foodstuff Trading L.L.C. All
-            rights reserved.
+            &copy; {currentYear} {COMPANY.name}. All rights reserved.
           </p>
           <p className="text-sm text-gray-500">
-            License No. 1591141 | Dubai, UAE
+            License No. {COMPANY.licenseNo} | {COMPANY.location}
           </p>
-        </div>
+        </Container>
       </div>
     </footer>
   );

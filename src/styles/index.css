@@ -22,16 +22,12 @@ body {
   overflow-x: hidden;
 }
 
-/* Typography */
+/* Typography - font-display class for Playfair Display font */
 .font-display {
   font-family: var(--font-display);
 }
 
-.font-body {
-  font-family: var(--font-body);
-}
-
-/* Hero Background Animation */
+/* Hero Background Animation - CSS animation that can't be done with Tailwind */
 @keyframes slowZoom {
   0% {
     transform: scale(1);
@@ -45,111 +41,7 @@ body {
   animation: slowZoom 20s ease-in-out infinite alternate;
 }
 
-/* Parallax Effect */
-.parallax {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-@media (max-width: 768px) {
-  .parallax {
-    background-attachment: scroll;
-  }
-}
-
-/* Gradient Overlays */
-.gradient-overlay {
-  background: linear-gradient(
-    135deg,
-    rgba(26, 95, 42, 0.85) 0%,
-    rgba(13, 61, 22, 0.75) 100%
-  );
-}
-
-/* Section Transitions */
-.section-fade {
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 0.8s ease-out,
-    transform 0.8s ease-out;
-}
-
-.section-fade.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Button Styles */
-.btn-primary {
-  @apply inline-flex items-center justify-center rounded-lg bg-[#1a5f2a] px-6 py-2 font-semibold text-white transition-all duration-300 hover:bg-[#0d3d16] hover:shadow-lg;
-}
-
-.btn-secondary {
-  @apply inline-flex items-center justify-center rounded-lg border-2 border-white bg-transparent px-6 py-2 font-semibold text-white transition-all duration-300 hover:bg-white hover:text-[#1a5f2a];
-}
-
-.btn-outline {
-  @apply inline-flex items-center justify-center rounded-lg border-2 border-[#1a5f2a] bg-transparent px-8 py-4 font-semibold text-[#1a5f2a] transition-all duration-300 hover:bg-[#1a5f2a] hover:text-white;
-}
-
-/* Card Styles */
-.card {
-  @apply rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
-}
-
-/* Product Card Hover */
-.product-card {
-  @apply relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500;
-}
-
-.product-card:hover {
-  @apply -translate-y-2 shadow-2xl;
-}
-
-.product-card:hover .product-image {
-  @apply scale-110;
-}
-
-.product-image {
-  @apply h-48 w-full object-cover transition-transform duration-500;
-}
-
-/* Stats Counter */
-.stat-number {
-  @apply text-5xl font-bold text-[#1a5f2a];
-  font-family: var(--font-display);
-}
-
-/* Navigation */
-.nav-link {
-  @apply relative transition-colors duration-300;
-}
-
-.nav-link:hover {
-  @apply text-[#6fcf7c];
-}
-
-.nav-link::after {
-  content: "";
-  @apply absolute bottom-0 left-0 h-0.5 w-0 bg-[#1a5f2a] transition-all duration-300;
-}
-
-.nav-link:hover::after {
-  @apply w-full;
-}
-
-.nav-link.active {
-  @apply font-semibold;
-}
-
-.nav-link.active::after {
-  @apply w-full;
-}
-
-/* Scrollbar Styling */
+/* Scrollbar Styling - browser-specific styling */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -167,37 +59,7 @@ body {
   background: #0d3d16;
 }
 
-/* Loading Animation */
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.animate-pulse-slow {
-  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Floating Animation */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Text Gradient */
+/* Text Gradient - requires background-clip which needs vendor prefixes */
 .text-gradient {
   background: linear-gradient(135deg, #1a5f2a 0%, #2d8a3e 100%);
   -webkit-background-clip: text;
@@ -205,38 +67,13 @@ body {
   background-clip: text;
 }
 
-/* Glass Effect */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+/* Responsive Typography for hero title */
+.hero-title {
+  font-size: 2.25rem;
+  line-height: 1.2;
 }
 
-/* Container */
-.container-custom {
-  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
-}
-
-/* Section Padding */
-.section-padding {
-  @apply py-16 md:py-24;
-}
-
-/* Video Grid */
-.video-card {
-  @apply overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
-}
-
-/* Responsive Typography */
-@media (max-width: 640px) {
-  .hero-title {
-    font-size: 2.25rem;
-    line-height: 1.2;
-  }
-}
-
-@media (min-width: 641px) and (max-width: 1024px) {
+@media (min-width: 641px) {
   .hero-title {
     font-size: 3rem;
     line-height: 1.2;

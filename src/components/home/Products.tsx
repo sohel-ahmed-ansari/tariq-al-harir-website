@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
+import { Button, Container } from "../ui";
+
 interface Product {
   id: number;
   name: string;
@@ -90,9 +92,9 @@ const Products = () => {
     <section
       id="products"
       ref={sectionRef}
-      className="section-padding bg-gray-50"
+      className="bg-gray-50 py-16 md:py-24"
     >
-      <div className="container-custom">
+      <Container>
         {/* Section Header */}
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <div className="mb-4 inline-flex items-center gap-2">
@@ -116,7 +118,7 @@ const Products = () => {
           {products.map((product, index) => (
             <div
               key={product.id}
-              className={`product-card transition-all duration-700 ${
+              className={`group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${
                 isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-10 opacity-0"
@@ -128,7 +130,7 @@ const Products = () => {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="product-image"
+                  className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute top-4 left-4">
                   <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-[#1a5f2a] backdrop-blur-sm">
@@ -172,7 +174,7 @@ const Products = () => {
           <p className="mb-4 text-gray-600">
             Looking for a specific product? We can source it for you.
           </p>
-          <a href="#contact" className="btn-outline">
+          <Button as="a" href="#contact" variant="outline">
             <svg
               className="mr-2 h-5 w-5"
               fill="none"
@@ -187,9 +189,9 @@ const Products = () => {
               />
             </svg>
             Contact Us for Custom Orders
-          </a>
+          </Button>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

@@ -1,6 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+import { COMPANY, CONTACT } from "../../constants";
+import { Button, Container } from "../ui";
+
 // Section IDs to observe for scroll spy
 const SECTION_IDS = ["about", "products", "why-us", "contact"];
 
@@ -120,13 +123,13 @@ const Navbar = () => {
           : "bg-gradient-to-b from-black/60 via-black/30 to-transparent backdrop-blur-sm"
       }`}
     >
-      <div className="container-custom">
+      <Container>
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
             <img
               src="/logo.png"
-              alt="Tariq Al Harir Logo"
+              alt={`${COMPANY.shortName} Logo`}
               className={`h-14 w-auto transition-all duration-300 ${
                 isScrolled
                   ? ""
@@ -142,21 +145,23 @@ const Navbar = () => {
                 key={link.name}
                 to={link.path}
                 onClick={() => handleNavClick(link.path)}
-                className={`nav-link font-medium ${
+                className={`relative font-medium transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#1a5f2a] after:transition-all after:duration-300 after:content-[''] hover:after:w-full ${
                   isScrolled
                     ? "text-gray-700 hover:text-[#1a5f2a]"
-                    : "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
-                } ${isActive(link.path) ? "active" : ""}`}
+                    : "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] hover:text-[#6fcf7c]"
+                } ${isActive(link.path) ? "font-semibold after:w-full" : "after:w-0"}`}
               >
                 {link.name}
               </Link>
             ))}
-            <a
-              href="tel:+971544646134"
-              className="btn-primary !px-6 !py-3 text-sm"
+            <Button
+              as="a"
+              href={CONTACT.phoneLink}
+              variant="primary"
+              className="text-sm"
             >
               Call Now
-            </a>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -209,15 +214,17 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <a
-              href="tel:+971544646134"
-              className="btn-primary mt-4 w-full !py-3 text-center text-sm"
+            <Button
+              as="a"
+              href={CONTACT.phoneLink}
+              variant="primary"
+              className="mt-4 w-full text-center text-sm"
             >
               Call Now
-            </a>
+            </Button>
           </div>
         </div>
-      </div>
+      </Container>
     </nav>
   );
 };

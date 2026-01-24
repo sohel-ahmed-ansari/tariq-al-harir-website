@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
+import { Container } from "../ui";
+
 interface Feature {
   title: string;
   description: string;
@@ -151,8 +153,8 @@ const WhyChooseUs = () => {
   }, []);
 
   return (
-    <section id="why-us" ref={sectionRef} className="section-padding bg-white">
-      <div className="container-custom">
+    <section id="why-us" ref={sectionRef} className="bg-white py-16 md:py-24">
+      <Container>
         {/* Section Header */}
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <div className="mb-4 inline-flex items-center gap-2">
@@ -198,7 +200,7 @@ const WhyChooseUs = () => {
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 };
