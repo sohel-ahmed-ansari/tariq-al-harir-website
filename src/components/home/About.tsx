@@ -1,3 +1,4 @@
+import { ArrowRight, Check, CheckCircle } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { COMPANY } from "../../constants";
@@ -50,19 +51,7 @@ const About = () => {
               <div className="absolute -right-4 -bottom-6 rounded-xl bg-white p-6 shadow-xl md:-right-8">
                 <div className="flex items-center gap-4">
                   <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#1a5f2a]/10">
-                    <svg
-                      className="h-7 w-7 text-[#1a5f2a]"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
+                    <CheckCircle className="h-7 w-7 text-[#1a5f2a]" />
                   </div>
                   <div>
                     <p className="font-display text-2xl font-bold text-[#1a5f2a]">
@@ -119,19 +108,7 @@ const About = () => {
             <div className="mb-8 grid gap-4 sm:grid-cols-2">
               <div className="flex items-start gap-3">
                 <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#1a5f2a]/10">
-                  <svg
-                    className="h-5 w-5 text-[#1a5f2a]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
+                  <Check className="h-5 w-5 text-[#1a5f2a]" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">
@@ -144,19 +121,7 @@ const About = () => {
               </div>
               <div className="flex items-start gap-3">
                 <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#1a5f2a]/10">
-                  <svg
-                    className="h-5 w-5 text-[#1a5f2a]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
+                  <Check className="h-5 w-5 text-[#1a5f2a]" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">
@@ -169,19 +134,7 @@ const About = () => {
               </div>
               <div className="flex items-start gap-3">
                 <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#1a5f2a]/10">
-                  <svg
-                    className="h-5 w-5 text-[#1a5f2a]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
+                  <Check className="h-5 w-5 text-[#1a5f2a]" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">
@@ -194,19 +147,7 @@ const About = () => {
               </div>
               <div className="flex items-start gap-3">
                 <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#1a5f2a]/10">
-                  <svg
-                    className="h-5 w-5 text-[#1a5f2a]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
+                  <Check className="h-5 w-5 text-[#1a5f2a]" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">
@@ -222,19 +163,7 @@ const About = () => {
             {/* CTA */}
             <Button as="a" href="#contact" variant="primary">
               Partner With Us
-              <svg
-                className="ml-2 h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </div>

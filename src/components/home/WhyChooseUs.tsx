@@ -1,3 +1,11 @@
+import {
+  ArrowRightLeft,
+  CircleDollarSign,
+  FileText,
+  Globe,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { Container } from "../ui";
@@ -13,121 +21,37 @@ const features: Feature[] = [
     title: "Strategic Location",
     description:
       "Based in Dubai, UAE - a global trade hub connecting Asia, Europe, and Africa with world-class port facilities.",
-    icon: (
-      <svg
-        className="h-7 w-7"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
-    ),
+    icon: <Globe className="h-7 w-7" />,
   },
   {
     title: "Quality Assurance",
     description:
       "Rigorous quality control processes ensure only the finest products reach our customers. We maintain strict standards.",
-    icon: (
-      <svg
-        className="h-7 w-7"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-        />
-      </svg>
-    ),
+    icon: <ShieldCheck className="h-7 w-7" />,
   },
   {
     title: "Competitive Pricing",
     description:
       "Direct relationships with producers and efficient logistics enable us to offer the best prices in the market.",
-    icon: (
-      <svg
-        className="h-7 w-7"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
-    ),
+    icon: <CircleDollarSign className="h-7 w-7" />,
   },
   {
     title: "Licensed & Compliant",
     description:
       "Fully licensed by Dubai DED with all necessary certifications for legal and compliant trading operations.",
-    icon: (
-      <svg
-        className="h-7 w-7"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-        />
-      </svg>
-    ),
+    icon: <FileText className="h-7 w-7" />,
   },
   {
     title: "Reliable Logistics",
     description:
       "Efficient supply chain management with proper cold storage and timely delivery to maintain product freshness.",
-    icon: (
-      <svg
-        className="h-7 w-7"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
-        />
-      </svg>
-    ),
+    icon: <ArrowRightLeft className="h-7 w-7" />,
   },
   {
     title: "Customer Focus",
     description:
       "Dedicated support team available 24/7 to address your queries and ensure smooth transactions every time.",
-    icon: (
-      <svg
-        className="h-7 w-7"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-        />
-      </svg>
-    ),
+    icon: <Users className="h-7 w-7" />,
   },
 ];
 
