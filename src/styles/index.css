@@ -86,3 +86,29 @@ body {
     line-height: 1.1;
   }
 }
+
+/* Brochure Print Styles */
+@media print {
+  /* Hide navbar and footer when printing brochure */
+  nav,
+  footer {
+    display: none !important;
+  }
+
+  /* Remove page margins - let the brochure control its own spacing */
+  @page {
+    margin: 0;
+    size: A4 portrait;
+  }
+
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .brochure-content {
+    max-width: none !important;
+    box-shadow: none !important;
+  }
+}

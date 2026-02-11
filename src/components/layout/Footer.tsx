@@ -12,7 +12,8 @@ const Footer = () => {
     { name: "Home", path: "/" },
     { name: "About Us", path: "/#about" },
     { name: "Products", path: "/#products" },
-    { name: "Videos", path: "/videos" },
+    // TODO: Uncomment when videos are ready
+    // { name: "Videos", path: "/videos" },
     { name: "Contact", path: "/#contact" },
   ];
 

@@ -1,8 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { Navbar, Footer } from "./components/layout";
+import Brochure from "./pages/Brochure";
 import Home from "./pages/Home";
-import Videos from "./pages/Videos";
+
+// TODO: Uncomment when videos are ready
+// import Videos from "./pages/Videos";
 
 function App() {
   return (
@@ -12,7 +15,9 @@ function App() {
         <div className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/videos" element={<Videos />} />
+            {/* TODO: Uncomment when videos are ready */}
+            {/* <Route path="/videos" element={<Videos />} /> */}
+            <Route path="/brochure" element={<Brochure />} />
           </Routes>
         </div>
         <Footer />

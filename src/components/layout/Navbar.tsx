@@ -81,7 +81,8 @@ const Navbar = () => {
     { name: "About", path: "/#about" },
     { name: "Products", path: "/#products" },
     { name: "Why Us", path: "/#why-us" },
-    { name: "Videos", path: "/videos" },
+    // TODO: Uncomment when videos are ready
+    // { name: "Videos", path: "/videos" },
     { name: "Contact", path: "/#contact" },
   ];
 
