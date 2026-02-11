@@ -1,15 +1,16 @@
 import { ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import dryFruits from "../../assets/products/dry-fruits.webp";
-import eggs from "../../assets/products/eggs.avif";
-import freshFruits from "../../assets/products/fresh-fruits.avif";
-import meat from "../../assets/products/meat.avif";
-import rice from "../../assets/products/rice.avif";
-import wheat from "../../assets/products/wheat.avif";
 import { CONTACT } from "../../constants";
 import { WhatsAppIcon } from "../icons";
 import { Button, Container } from "../ui";
+
+const freshFruits = "/products/fresh-fruits.avif";
+const meat = "/products/meat.avif";
+const eggs = "/products/eggs.avif";
+const rice = "/products/rice.avif";
+const wheat = "/products/wheat.avif";
+const dryFruits = "/products/dry-fruits.webp";
 
 interface Product {
   id: number;

@@ -11,14 +11,15 @@ import {
 } from "lucide-react";
 import { useEffect } from "react";
 
-import dryFruits from "../assets/products/dry-fruits.webp";
-import eggs from "../assets/products/eggs.avif";
-import freshFruits from "../assets/products/fresh-fruits.avif";
-import meat from "../assets/products/meat.avif";
-import rice from "../assets/products/rice.avif";
-import wheat from "../assets/products/wheat.avif";
 import { WhatsAppIcon } from "../components/icons";
 import { COMPANY, CONTACT } from "../constants";
+
+const freshFruits = "/products/fresh-fruits.avif";
+const meat = "/products/meat.avif";
+const eggs = "/products/eggs.avif";
+const rice = "/products/rice.avif";
+const wheat = "/products/wheat.avif";
+const dryFruits = "/products/dry-fruits.webp";
 
 const products = [
   {

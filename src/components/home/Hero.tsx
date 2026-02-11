@@ -1,11 +1,12 @@
 import { ArrowDown, Globe, Package, ShieldCheck, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import heroImage from "../../assets/hero.jpeg";
 import { CONTACT } from "../../constants";
 import { COMPANY } from "../../constants";
 import { WhatsAppIcon } from "../icons";
 import { Button, Container } from "../ui";
+
+const heroImage = "/hero.jpeg";
 
 const Hero = () => {
   const [offsetY, setOffsetY] = useState(0);
