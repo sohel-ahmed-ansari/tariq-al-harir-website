@@ -1,7 +1,8 @@
-import { ArrowRight, Check, CheckCircle } from "lucide-react";
+import { Check } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { COMPANY } from "../../constants";
+import { COMPANY, CONTACT } from "../../constants";
+import { WhatsAppIcon } from "../icons";
 import { Button, Container } from "../ui";
 
 const About = () => {
@@ -46,24 +47,6 @@ const About = () => {
                   className="h-[500px] w-full object-cover"
                 />
               </div>
-
-              {/* Floating Card */}
-              <div className="absolute -right-4 -bottom-6 rounded-xl bg-white p-6 shadow-xl md:-right-8">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#1a5f2a]/10">
-                    <CheckCircle className="h-7 w-7 text-[#1a5f2a]" />
-                  </div>
-                  <div>
-                    <p className="font-display text-2xl font-bold text-[#1a5f2a]">
-                      9+
-                    </p>
-                    <p className="text-sm text-gray-600">Trading Activities</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Decorative Element */}
-              <div className="absolute -top-4 -left-4 h-24 w-24 rounded-2xl bg-[#1a5f2a]/10" />
             </div>
           </div>
 
@@ -77,6 +60,7 @@ const About = () => {
               <span className="font-medium tracking-wider text-[#1a5f2a] uppercase">
                 About Us
               </span>
+              <span className="h-px w-8 bg-[#1a5f2a]" />
             </div>
 
             {/* Title */}
@@ -107,7 +91,7 @@ const About = () => {
             {/* Features */}
             <div className="mb-8 grid gap-4 sm:grid-cols-2">
               <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#1a5f2a]/10">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#1a5f2a]/10">
                   <Check className="h-5 w-5 text-[#1a5f2a]" />
                 </div>
                 <div>
@@ -120,7 +104,7 @@ const About = () => {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#1a5f2a]/10">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#1a5f2a]/10">
                   <Check className="h-5 w-5 text-[#1a5f2a]" />
                 </div>
                 <div>
@@ -133,7 +117,7 @@ const About = () => {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#1a5f2a]/10">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#1a5f2a]/10">
                   <Check className="h-5 w-5 text-[#1a5f2a]" />
                 </div>
                 <div>
@@ -146,7 +130,7 @@ const About = () => {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#1a5f2a]/10">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#1a5f2a]/10">
                   <Check className="h-5 w-5 text-[#1a5f2a]" />
                 </div>
                 <div>
@@ -161,9 +145,15 @@ const About = () => {
             </div>
 
             {/* CTA */}
-            <Button as="a" href="#contact" variant="primary">
+            <Button
+              as="a"
+              href={CONTACT.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="primary"
+            >
+              <WhatsAppIcon className="mr-2 h-5 w-5" />
               Partner With Us
-              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </div>

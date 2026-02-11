@@ -1,6 +1,14 @@
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import dryFruits from "../../assets/products/dry-fruits.webp";
+import eggs from "../../assets/products/eggs.avif";
+import freshFruits from "../../assets/products/fresh-fruits.avif";
+import meat from "../../assets/products/meat.avif";
+import rice from "../../assets/products/rice.avif";
+import wheat from "../../assets/products/wheat.avif";
+import { CONTACT } from "../../constants";
+import { WhatsAppIcon } from "../icons";
 import { Button, Container } from "../ui";
 
 interface Product {
@@ -17,8 +25,7 @@ const products: Product[] = [
     name: "Fresh Fruits & Vegetables",
     description:
       "Premium quality fresh produce sourced from trusted farms worldwide. Apples, oranges, mangoes, tomatoes, onions, and more.",
-    image:
-      "https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+    image: freshFruits,
     category: "Fresh Produce",
   },
   {
@@ -26,8 +33,7 @@ const products: Product[] = [
     name: "Frozen Meat",
     description:
       "High-quality frozen and chilled meat products including beef, lamb, chicken, and mutton from certified suppliers.",
-    image:
-      "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+    image: meat,
     category: "Meat Products",
   },
   {
@@ -35,8 +41,7 @@ const products: Product[] = [
     name: "Eggs",
     description:
       "Fresh and packaged eggs in bulk quantities. Sourced from quality poultry farms with proper cold chain management.",
-    image:
-      "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+    image: eggs,
     category: "Poultry",
   },
   {
@@ -44,8 +49,7 @@ const products: Product[] = [
     name: "Sugar & Rice",
     description:
       "Premium quality sugar and rice varieties including Basmati, Jasmine, and other specialty grains for wholesale.",
-    image:
-      "https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+    image: rice,
     category: "Grains & Sugar",
   },
   {
@@ -53,8 +57,7 @@ const products: Product[] = [
     name: "Flour & Bakery Products",
     description:
       "All-purpose flour, wheat flour, and specialty baking ingredients for commercial bakeries and food industries.",
-    image:
-      "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+    image: wheat,
     category: "Bakery",
   },
   {
@@ -62,8 +65,7 @@ const products: Product[] = [
     name: "Dried Fruits & Snacks",
     description:
       "Premium dried fruits, nuts, and healthy snack products. Perfect for retail and wholesale distribution.",
-    image:
-      "https://images.unsplash.com/photo-1596273312810-2e3817d5a3d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+    image: dryFruits,
     category: "Snacks",
   },
 ];
@@ -147,7 +149,9 @@ const Products = () => {
                 </h3>
                 <p className="mb-4 text-gray-600">{product.description}</p>
                 <a
-                  href="#contact"
+                  href={CONTACT.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center font-medium text-[#1a5f2a] transition-colors hover:text-[#0d3d16]"
                 >
                   Request Quote
@@ -163,8 +167,14 @@ const Products = () => {
           <p className="mb-4 text-gray-600">
             Looking for a specific product? We can source it for you.
           </p>
-          <Button as="a" href="#contact" variant="outline">
-            <MessageCircle className="mr-2 h-5 w-5" />
+          <Button
+            as="a"
+            href={CONTACT.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="outline"
+          >
+            <WhatsAppIcon className="mr-2 h-5 w-5" />
             Contact Us for Custom Orders
           </Button>
         </div>

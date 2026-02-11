@@ -152,9 +152,9 @@ const Videos = () => {
       <section ref={sectionRef} className="bg-gray-50 py-16 md:py-24">
         <Container>
           {/* Info Banner */}
-          <div className="mb-12 rounded-2xl bg-gradient-to-r from-[#1a5f2a]/10 to-[#1a5f2a]/5 p-6 md:p-8">
+          <div className="mb-12 rounded-2xl bg-linear-to-r from-[#1a5f2a]/10 to-[#1a5f2a]/5 p-6 md:p-8">
             <div className="flex flex-col items-center gap-4 text-center md:flex-row md:text-left">
-              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-[#1a5f2a]/10">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#1a5f2a]/10">
                 <Video className="h-7 w-7 text-[#1a5f2a]" />
               </div>
               <div>
@@ -233,7 +233,7 @@ const Videos = () => {
       {/* CTA Section */}
       <section className="bg-white py-16">
         <Container>
-          <div className="rounded-2xl bg-gradient-to-r from-[#1a5f2a] to-[#0d3d16] p-8 md:p-12">
+          <div className="rounded-2xl bg-linear-to-r from-[#1a5f2a] to-[#0d3d16] p-8 md:p-12">
             <div className="flex flex-col items-center gap-8 text-center md:flex-row md:text-left">
               <div className="flex-1">
                 <h2 className="font-display mb-4 text-2xl font-bold text-white md:text-3xl">
@@ -256,8 +256,15 @@ const Videos = () => {
                   <WhatsAppIcon className="mr-2 h-5 w-5" />
                   WhatsApp
                 </Button>
-                <Button as="link" to="/#contact" variant="secondary">
-                  Contact Us
+                <Button
+                  as="a"
+                  href={CONTACT.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="secondary"
+                >
+                  <WhatsAppIcon className="mr-2 h-5 w-5" />
+                  WhatsApp Us
                 </Button>
               </div>
             </div>

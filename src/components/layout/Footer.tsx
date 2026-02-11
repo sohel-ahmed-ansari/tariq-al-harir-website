@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, /* MapPin, */ Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import { COMPANY, CONTACT } from "../../constants";
@@ -102,8 +102,9 @@ const Footer = () => {
               Contact Us
             </h3>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-1 h-5 w-5 flex-shrink-0 text-[#1a5f2a]" />
+              {/* TODO: Uncomment when office address is finalised */}
+              {/* <li className="flex items-start gap-3">
+                <MapPin className="mt-1 h-5 w-5 shrink-0 text-[#1a5f2a]" />
                 <span className="text-gray-400">
                   Office 16, Building 236SH-R
                   <br />
@@ -111,9 +112,9 @@ const Footer = () => {
                   <br />
                   Dubai, UAE
                 </span>
-              </li>
+              </li> */}
               <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5 flex-shrink-0 text-[#1a5f2a]" />
+                <Phone className="h-5 w-5 shrink-0 text-[#1a5f2a]" />
                 <a
                   href={CONTACT.phoneLink}
                   className="text-gray-400 transition-colors hover:text-white"
@@ -122,7 +123,7 @@ const Footer = () => {
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="h-5 w-5 flex-shrink-0 text-[#1a5f2a]" />
+                <Mail className="h-5 w-5 shrink-0 text-[#1a5f2a]" />
                 <a
                   href={CONTACT.emailLink}
                   className="text-gray-400 transition-colors hover:text-white"

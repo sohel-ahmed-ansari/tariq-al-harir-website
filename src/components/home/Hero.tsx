@@ -1,15 +1,10 @@
-import {
-  ArrowDown,
-  Globe,
-  MessageCircle,
-  Package,
-  ShieldCheck,
-  Sparkles,
-} from "lucide-react";
+import { ArrowDown, Globe, Package, ShieldCheck, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import heroImage from "../../assets/hero.jpeg";
+import { CONTACT } from "../../constants";
 import { COMPANY } from "../../constants";
+import { WhatsAppIcon } from "../icons";
 import { Button, Container } from "../ui";
 
 const Hero = () => {
@@ -89,8 +84,14 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col gap-4 sm:flex-row">
-              <Button as="a" href="#contact" variant="primary">
-                <MessageCircle className="mr-2 h-5 w-5" />
+              <Button
+                as="a"
+                href={CONTACT.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="primary"
+              >
+                <WhatsAppIcon className="mr-2 h-5 w-5" />
                 Get Quote
               </Button>
               <Button as="a" href="#products" variant="secondary">
