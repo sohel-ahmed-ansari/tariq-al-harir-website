@@ -1,1 +1,114 @@
 @import "tailwindcss";
+
+/* Custom CSS Variables */
+:root {
+  --color-primary: #1a5f2a;
+  --color-primary-dark: #0d3d16;
+  --color-secondary: #c9a227;
+  --color-accent: #e07b39;
+  --font-display: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #fafafa;
+  color: #1f2937;
+  overflow-x: hidden;
+}
+
+/* Typography - font-display class for Playfair Display font */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Hero Background Animation - CSS animation that can't be done with Tailwind */
+@keyframes slowZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.hero-bg-zoom {
+  animation: slowZoom 20s ease-in-out infinite alternate;
+}
+
+/* Scrollbar Styling - browser-specific styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a5f2a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0d3d16;
+}
+
+/* Text Gradient - requires background-clip which needs vendor prefixes */
+.text-gradient {
+  background: linear-gradient(135deg, #1a5f2a 0%, #2d8a3e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive Typography for hero title */
+.hero-title {
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 641px) {
+  .hero-title {
+    font-size: 3rem;
+    line-height: 1.2;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hero-title {
+    font-size: 3rem;
+    line-height: 1.1;
+  }
+}
+
+/* Brochure Print Styles */
+@media print {
+  /* Hide navbar and footer when printing brochure */
+  nav,
+  footer {
+    display: none !important;
+  }
+
+  /* Remove page margins - let the brochure control its own spacing */
+  @page {
+    margin: 0;
+    size: A4 portrait;
+  }
+
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .brochure-content {
+    max-width: none !important;
+    box-shadow: none !important;
+  }
+}
