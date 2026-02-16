@@ -1,7 +1,7 @@
 import { Mail, /* MapPin, */ Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import { COMPANY, CONTACT } from "../../constants";
+import { COMPANY, CONTACT, AREA_SERVED } from "../../constants";
 import { WhatsAppIcon } from "../icons";
 import { Container } from "../ui";
 
@@ -41,8 +41,9 @@ const Footer = () => {
             <p className="mb-6 leading-relaxed text-gray-400">
               {COMPANY.shortName} - meaning &quot;{COMPANY.tagline}&quot; -
               continues the ancient tradition of connecting the world through
-              quality trade. Your trusted partner for premium foodstuff in{" "}
-              {COMPANY.location}.
+              quality trade. We import and export foodstuff to and from{" "}
+              {AREA_SERVED.slice(0, -1).join(", ")} and{" "}
+              {AREA_SERVED[AREA_SERVED.length - 1]}.
             </p>
             <div className="flex gap-4">
               <a

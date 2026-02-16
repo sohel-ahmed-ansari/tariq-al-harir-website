@@ -9,6 +9,17 @@ export const COMPANY = {
   location: "Dubai, UAE",
 } as const;
 
+// Countries we import/export to and from (for SEO and display)
+export const AREA_SERVED = [
+  "India",
+  "UAE",
+  "Sri Lanka",
+  "Saudi Arabia",
+  "Oman",
+  "Qatar",
+  "Kazakhstan",
+] as const;
+
 // Contact Information
 export const CONTACT = {
   phone: "+971544646134",

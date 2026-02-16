@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { CONTACT } from "../../constants";
+import { CONTACT, AREA_SERVED } from "../../constants";
 import { WhatsAppIcon } from "../icons";
 import { Button, Container } from "../ui";
 
@@ -113,7 +113,9 @@ const Products = () => {
           </h2>
           <p className="text-lg text-gray-600">
             We trade a diverse range of high-quality food products, connecting
-            global suppliers with markets across the UAE and beyond.
+            global suppliers with markets in{" "}
+            {AREA_SERVED.slice(0, -1).join(", ")} and{" "}
+            {AREA_SERVED[AREA_SERVED.length - 1]}.
           </p>
         </div>
 

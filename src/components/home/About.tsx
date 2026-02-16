@@ -1,7 +1,7 @@
 import { Check } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { COMPANY, CONTACT } from "../../constants";
+import { COMPANY, CONTACT, AREA_SERVED } from "../../constants";
 import { WhatsAppIcon } from "../icons";
 import { Button, Container } from "../ui";
 
@@ -83,9 +83,11 @@ const About = () => {
             <p className="mb-8 text-lg leading-relaxed text-gray-600">
               As a licensed LLC in the UAE, we specialize in trading fresh
               fruits, vegetables, frozen meat, eggs, sugar, flour, and a wide
-              range of food products. Our strategic location in Dubai provides
-              access to global markets, ensuring the finest products reach your
-              doorstep.
+              range of food products. We import and export to and from{" "}
+              {AREA_SERVED.slice(0, -1).join(", ")} and{" "}
+              {AREA_SERVED[AREA_SERVED.length - 1]}. Our strategic location in
+              Dubai provides access to these markets, ensuring the finest
+              products reach your doorstep.
             </p>
 
             {/* Features */}
