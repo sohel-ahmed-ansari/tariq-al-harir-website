@@ -6,6 +6,7 @@ import {
   About,
   Products,
   WhyChooseUs,
+  VideosPreview,
   Contact,
 } from "../components/home";
 
@@ -31,6 +32,7 @@ const Home = () => {
       <About />
       <Products />
       <WhyChooseUs />
+      <VideosPreview />
       <Contact />
     </main>
   );

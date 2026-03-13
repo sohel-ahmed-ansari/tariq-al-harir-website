@@ -3,4 +3,5 @@ export { default as About } from "./About";
 export { default as Products } from "./Products";
 export { default as Stats } from "./Stats";
 export { default as WhyChooseUs } from "./WhyChooseUs";
+export { default as VideosPreview } from "./VideosPreview";
 export { default as Contact } from "./Contact";

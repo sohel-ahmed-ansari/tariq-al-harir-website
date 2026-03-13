@@ -4,22 +4,13 @@ import { Link } from "react-router-dom";
 import { Container } from "../ui";
 
 const VideosHero = () => (
-  <section className="relative overflow-hidden bg-black">
-    {/* Background Image */}
-    <div
-      className="absolute inset-0"
-      style={{
-        backgroundImage: "url(/hero.jpeg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    />
-
-    {/* Gradient Overlay */}
-    <div className="absolute inset-0 bg-linear-to-r from-black/85 via-black/75 to-black/50" />
+  <section className="relative overflow-hidden bg-gray-900">
+    {/* Background decoration */}
+    <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-[#1a5f2a]/10 blur-3xl" />
+    <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-[#c9a227]/10 blur-3xl" />
 
     {/* Content */}
-    <Container className="relative z-10 py-32 md:py-40">
+    <Container className="relative z-10 py-24 md:py-28">
       {/* Breadcrumb */}
       <nav className="mb-8 flex">
         <ol className="flex items-center gap-2 text-sm text-white/60">
