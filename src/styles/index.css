@@ -87,6 +87,12 @@ body {
   }
 }
 
+/* Hide native volume control on lightbox video (Chrome, Safari, Edge) */
+.video-no-volume::-webkit-media-controls-volume-slider,
+.video-no-volume::-webkit-media-controls-mute-button {
+  display: none !important;
+}
+
 /* Brochure Print Styles */
 @media print {
   /* Hide navbar and footer when printing brochure */
